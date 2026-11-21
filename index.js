@@ -4,12 +4,23 @@ const category = document.getElementById("category")
 const message = document.getElementById("message")
 const complete = document.getElementById("complete")
 const ticketList = document.getElementById("ticketList")
+const onlyOpen = document.getElementById("onlyOpen")
+const hunt = document.getElementById("hunt")
 
 const tickets = [
     { title: 'Проектор не включается', room: '203', category: 'Оборудование', done: false },
     { title: 'Не закрывается окно', room: '105', category: 'Аудитория', done: false },
     { title: 'В коридоре не горит свет', room: 'Коридор, 2-й этаж', category: 'Другое', done: true }
 ]
+
+onlyOpen.addEventListener('change', () => {
+    if (onlyOpen.checked) {
+        hunt.textContent = 'Показаны только открытые заявки.'
+    } else {
+        hunt.textContent = ''
+    }
+    render()
+})
 
 complete.addEventListener('click', () => {
     const titl = title.value.trim()
@@ -47,7 +58,20 @@ complete.addEventListener('click', () => {
 function render() {
     ticketList.textContent = ''
 
+    if (tickets.length === 0) {
+        const item = document.createElement('li')
+        item.textContent = 'Заявок пока нет'
+        ticketList.append(item)
+        return
+    }
+
+    let shown = 0
+
     tickets.forEach((ticket, index) => {
+        if (onlyOpen.checked && ticket.done) return
+
+        shown++
+
         const delet = document.createElement('button')
         delet.textContent = 'Удалить'
         delet.addEventListener('click', () => {
@@ -76,4 +100,11 @@ function render() {
 
         ticketList.append(item)
     })
+
+    if (shown === 0) {
+        const item = document.createElement('li')
+        item.textContent = 'Открытых заявок нет'
+        ticketList.append(item)
+    }
 }
+render()

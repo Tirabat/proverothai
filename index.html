@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="index.js" defer></script>
 </head>
+
 <body>
     <h1>Заявки корпуса</h1>
-    <ul id="ticketList"></ul>
     <label for="title">Что случилось?</label>
     <input type="text" id="title">
     <label for="room">Где?</label>
@@ -20,6 +21,13 @@
         <option value="3">Другое</option>
     </select>
     <button id="complete" type="button">Подать заявку</button>
+    <label>
+        <input type="checkbox" id="onlyOpen">
+        Только открытые
+    </label>
+    <p id="hunt"></p>
+    <ul id="ticketList"></ul>
     <p id="message"></p>
 </body>
+
 </html>
