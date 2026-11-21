@@ -48,38 +48,32 @@ function render() {
     ticketList.textContent = ''
 
     tickets.forEach((ticket, index) => {
-        const li = document.createElement('li')
-
-        const info = document.createElement('span')
-        info.textContent = ticket.title + ' в ' + ticket.room
-            + ' (' + ticket.category + '). '
-        li.append(info)
-
-        const status = document.createElement('span')
-        status.textContent = ticket.done ? 'Выполнена' : 'Открыта'
-        status.className = ticket.done ? 'status-done' : 'status-open'
-        li.append(status)
-
-        if (!ticket.done) {
-            const doneBtn = document.createElement('button')
-            doneBtn.textContent = 'Выполнить'
-            doneBtn.addEventListener('click', () => {
-                tickets[index].done = true
-                render()
-            })
-            li.append(doneBtn)
-        }
-
-        const delBtn = document.createElement('button')
-        delBtn.textContent = 'Удалить'
-        delBtn.addEventListener('click', () => {
+        const delet = document.createElement('button')
+        delet.textContent = 'Удалить'
+        delet.addEventListener('click', () => {
             tickets.splice(index, 1)
             render()
         })
-        li.append(delBtn)
 
-        ticketList.append(li)
+        const done = document.createElement('button')
+        done.textContent = 'Выполнить'
+        done.addEventListener('click', () => {
+            tickets[index].done = true
+            render()
+        })
+
+        const item = document.createElement('li')
+
+        const status = ticket.done ? 'Выполнена' : 'Открыта'
+        item.append(
+            ticket.title + ' в ' + ticket.room + ' (' + ticket.category + '). ' + status + ' ',
+            delet
+        )
+
+        if (!ticket.done) {
+            item.append(done)
+        }
+
+        ticketList.append(item)
     })
 }
-
-render()
