@@ -8,7 +8,7 @@ const ticketList = document.getElementById("ticketList")
 const tickets = [
     { title: 'Проектор не включается', room: '203', category: 'Оборудование', done: false },
     { title: 'Не закрывается окно', room: '105', category: 'Аудитория', done: false },
-    { title: 'В коридоре не горит свет', room: 'Коридор, 2-й этаж', category: 'Другое', done: false }
+    { title: 'В коридоре не горит свет', room: 'Коридор, 2-й этаж', category: 'Другое', done: true }
 ]
 
 complete.addEventListener('click', () => {
@@ -50,7 +50,7 @@ function render() {
     tickets.forEach((ticket) => {
         const li = document.createElement('li')
         const status = ticket.done ? 'Выполнена' : 'Невыполнена'
-        li.textContent = ticket.title + ' — ' + ticket.room
+        li.textContent = ticket.title + ' в ' + ticket.room
             + ' (' + ticket.category + '). ' + status
         ticketList.append(li)
     })
