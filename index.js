@@ -1,6 +1,7 @@
 const title = document.getElementById("title")
 const room = document.getElementById("room")
 const category = document.getElementById("category")
+const filter = document.getElementById("filter")
 const message = document.getElementById("message")
 const complete = document.getElementById("complete")
 const ticketList = document.getElementById("ticketList")
@@ -21,6 +22,8 @@ onlyOpen.addEventListener('change', () => {
     }
     render()
 })
+
+filter.addEventListener('change', render)
 
 complete.addEventListener('click', () => {
     const titl = title.value.trim()
@@ -69,6 +72,7 @@ function render() {
 
     tickets.forEach((ticket, index) => {
         if (onlyOpen.checked && ticket.done) return
+        if (filter.value !== '' && ticket.category !== filter.value) return
 
         shown++
 
@@ -103,8 +107,9 @@ function render() {
 
     if (shown === 0) {
         const item = document.createElement('li')
-        item.textContent = 'Открытых заявок нет'
+        item.textContent = 'Нет заявок по выбранным фильтрам'
         ticketList.append(item)
     }
 }
+
 render()

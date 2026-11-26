@@ -1,34 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="index.js" defer></script>
+    <title>Заявки корпуса</title>
     <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
 </head>
-
 <body>
     <h1>Заявки корпуса</h1>
+
     <label for="title">Что случилось?</label>
     <input type="text" id="title">
+
     <label for="room">Где?</label>
     <input type="text" id="room">
+
+    <label for="category">Категория</label>
     <select id="category">
         <option value="">Выберите категорию</option>
         <option value="1">Оборудование</option>
         <option value="2">Аудитория</option>
         <option value="3">Другое</option>
     </select>
+
     <button id="complete" type="button">Подать заявку</button>
+
+    <hr>
+
+    <label for="filter">Фильтр по категории</label>
+    <select id="filter">
+        <option value="">Все категории</option>
+        <option value="Оборудование">Оборудование</option>
+        <option value="Аудитория">Аудитория</option>
+        <option value="Другое">Другое</option>
+    </select>
+
     <label>
         <input type="checkbox" id="onlyOpen">
         Только открытые
     </label>
-    <p id="hunt"></p>
-    <ul id="ticketList"></ul>
-    <p id="message"></p>
-</body>
 
+    <p id="hunt"></p>
+    <p id="message"></p>
+    <ul id="ticketList"></ul>
+</body>
 </html>
