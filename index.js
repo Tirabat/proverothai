@@ -8,6 +8,7 @@ const ticketList = document.getElementById("ticketList")
 const onlyOpen = document.getElementById("onlyOpen")
 const hunt = document.getElementById("hunt")
 const onlyClose = document.getElementById("onlyClose")
+let open = 0
 
 const tickets = [
     { title: 'Проектор не включается', room: '203', category: 'Оборудование', done: false },
@@ -17,6 +18,7 @@ const tickets = [
 
 onlyOpen.addEventListener('change', () => {
     if (onlyOpen.checked) {
+        onlyClose.checked = false
         hunt.textContent = 'Показаны только открытые заявки.'
     } else {
         hunt.textContent = ''
@@ -26,6 +28,7 @@ onlyOpen.addEventListener('change', () => {
 
 onlyClose.addEventListener('change', () => {
     if (onlyClose.checked) {
+        onlyOpen.checked = false
         hunt.textContent = 'Показаны только закрытые заявки.'
     } else {
         hunt.textContent = ''
