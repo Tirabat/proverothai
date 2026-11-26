@@ -7,6 +7,7 @@ const complete = document.getElementById("complete")
 const ticketList = document.getElementById("ticketList")
 const onlyOpen = document.getElementById("onlyOpen")
 const hunt = document.getElementById("hunt")
+const onlyClose = document.getElementById("onlyClose")
 
 const tickets = [
     { title: 'Проектор не включается', room: '203', category: 'Оборудование', done: false },
@@ -17,6 +18,15 @@ const tickets = [
 onlyOpen.addEventListener('change', () => {
     if (onlyOpen.checked) {
         hunt.textContent = 'Показаны только открытые заявки.'
+    } else {
+        hunt.textContent = ''
+    }
+    render()
+})
+
+onlyClose.addEventListener('change', () => {
+    if (onlyClose.checked) {
+        hunt.textContent = 'Показаны только закрытые заявки.'
     } else {
         hunt.textContent = ''
     }
@@ -72,6 +82,7 @@ function render() {
 
     tickets.forEach((ticket, index) => {
         if (onlyOpen.checked && ticket.done) return
+        if (onlyClose.checked && !ticket.done) return
         if (filter.value !== '' && ticket.category !== filter.value) return
 
         shown++
